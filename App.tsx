@@ -4,6 +4,7 @@ import Manifesto from './components/Manifesto';
 import Archive from './components/Archive';
 import Protocols from './components/Protocols';
 import { ViewState } from './types';
+import OracleChat from './components/OracleChat';
 
 function App() {
   const [currentView, setCurrentView] = useState<ViewState>(ViewState.MANIFESTO);
@@ -16,6 +17,8 @@ function App() {
         return <Protocols />;
       case ViewState.ARCHIVE:
         return <Archive />;
+      case ViewState.ORACLE:
+        return <OracleChat />;
       default:
         return <Manifesto />;
     }

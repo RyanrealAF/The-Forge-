@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Chat } from '@google/genai';
 import { createBrandChat, sendMessageToOracle } from '../services/geminiService';
+// FIX: This import error is resolved by adding ChatMessage to types.ts.
 import { ChatMessage } from '../types';
 
 const OracleChat: React.FC = () => {
@@ -67,6 +68,14 @@ const OracleChat: React.FC = () => {
       setMessages(prev => [...prev, modelMsg]);
     } catch (error) {
       console.error(error);
+      // FIX: Added user-facing error message on send failure for better UX.
+      const errorMsg: ChatMessage = {
+        id: (Date.now() + 1).toString(),
+        role: 'model',
+        text: "TRANSMISSION ERROR: The Oracle is unresponsive. Check console for details.",
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, errorMsg]);
     } finally {
       setIsLoading(false);
     }

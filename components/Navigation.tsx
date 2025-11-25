@@ -8,7 +8,6 @@ interface NavigationProps {
 }
 
 const Navigation: React.FC<NavigationProps> = ({ currentView, setView }) => {
-  // FIX: Added ORACLE to the navigation to make the chat feature accessible.
   const navItems = [
     { label: 'MANIFESTO', value: ViewState.MANIFESTO },
     { label: 'PROTOCOLS', value: ViewState.PROTOCOLS },
