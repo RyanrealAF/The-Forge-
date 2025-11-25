@@ -32,9 +32,9 @@ A decentralized, immutable record of content.
 *   **Purpose:** A grassroots firewall and pre-emptive litigation strategy.
 *   **Structure:** Grid-based artifact retrieval system with metadata timestamps.
 
-### 2.4 ORACLE (Status: OFFLINE)
-*   *Current Status:* **DORMANT**.
-*   The AI-driven conversational interface (Gemini integration) has been disconnected from the frontend UI. The architectural bones (Types, Services) remain for future reactivation.
+### 2.4 ORACLE (Status: ONLINE)
+*   **Current Status:** **ONLINE & ACTIVE**.
+*   The AI-driven conversational interface, powered by the Gemini API. It embodies the brand persona, providing direct, unfiltered engagement based on the core doctrine.
 
 ---
 
@@ -43,10 +43,11 @@ A decentralized, immutable record of content.
 ### Stack
 *   **Framework:** React 19
 *   **Styling:** Tailwind CSS (Custom "Void" Config)
-*   **Typography:**
-    *   *Display:* `Oswald` (Monument Extended Proxy)
-    *   *Body:* `Inter`
-*   **Language:** TypeScript
+*   **Language:** TypeScript (TSX)
+*   **AI:** Google Gemini API (`gemini-2.5-flash`)
+
+### In-Browser Transpilation
+This project runs without a traditional build step. It uses **Babel Standalone**, which is included as a script in `index.html`. This transpiles the TSX (TypeScript + JSX) code into plain JavaScript directly in the browser. This is a lightweight approach suitable for environments without a Node.js build pipeline.
 
 ### Visual Identity System
 The UI adheres to the **"Matte Black"** doctrine:
@@ -57,22 +58,9 @@ The UI adheres to the **"Matte Black"** doctrine:
 
 ---
 
-## 4.0 DEPLOYMENT
+## 4.0 OPERATION
 
-1.  **Install Dependencies:**
-    ```bash
-    npm install
-    ```
-
-2.  **Run Development Server:**
-    ```bash
-    npm start
-    ```
-
-3.  **Build for Production:**
-    ```bash
-    npm run build
-    ```
+This application is self-contained and requires no build process. It can be served from any static file server or run by opening `index.html` in a web browser. All dependencies (React, Tailwind, Babel) are loaded from CDNs.
 
 ---
 
