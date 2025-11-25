@@ -1,15 +1,7 @@
 export enum ViewState {
   MANIFESTO = 'MANIFESTO',
   PROTOCOLS = 'PROTOCOLS',
-  ORACLE = 'ORACLE',
   ARCHIVE = 'ARCHIVE'
-}
-
-export interface ChatMessage {
-  id: string;
-  role: 'user' | 'model';
-  text: string;
-  timestamp: Date;
 }
 
 export interface Artifact {
@@ -31,4 +23,11 @@ export interface ProtocolSection {
   subtitle: string;
   content: string[];
   roles?: { name: string; description: string }[];
+}
+
+export interface ChatMessage {
+  id: string;
+  role: 'user' | 'model';
+  text: string;
+  timestamp: Date;
 }

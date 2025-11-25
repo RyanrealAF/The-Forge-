@@ -11,7 +11,6 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, setView }) => {
   const navItems = [
     { label: 'MANIFESTO', value: ViewState.MANIFESTO },
     { label: 'PROTOCOLS', value: ViewState.PROTOCOLS },
-    { label: 'ORACLE', value: ViewState.ORACLE },
     { label: 'ARCHIVE', value: ViewState.ARCHIVE },
   ];
 
