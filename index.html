@@ -15,29 +15,40 @@
         theme: {
           extend: {
             colors: {
-              'void': '#050505',     // Matte Black - The Abyss
-              'void-light': '#121212', // Slightly lighter black for cards
+              'void': '#030303',     // Matte Black - The Abyss (Darkened)
+              'void-light': '#0a0a0a', // Barely lighter black for cards
               'bronze': '#CD7F32',   // Metallic Bronze - The Scar
               'bronze-dim': '#8c5e3c',
-              'stone': '#2E2E2E',    // Textured Stone - Reality
+              'stone': '#1f1f1f',    // Textured Stone - Reality (Darker/Colder)
               'oak': '#6d4c41',      // Warm Oak - Nature/Stability
-              'mist': '#888888',     // Subdued Text
+              'mist': '#525252',     // Subdued Text (Darker for contrast control)
+              'highlight': '#e5e5e5', // Sharp text
             },
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
               display: ['Oswald', 'sans-serif'], // Monument Extended proxy
+              mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', "Liberation Mono", "Courier New", 'monospace'], // Tactical Data
             },
             backgroundImage: {
-              'noise': "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjMDUwNTA1Ii8+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiMxMjEyMTIiLz4KPC9zdmc+')",
+              'noise': "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjMDMwMzAzIi8+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiMwYTBhMGEiLz4KPC9zdmc+')", // Darkened noise
             },
             animation: {
               'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
               'fade-in': 'fadeIn 0.8s ease-out forwards',
+              'glitch': 'glitch 0.2s cubic-bezier(0.4, 0, 0.6, 1) both',
             },
             keyframes: {
               fadeIn: {
                 '0%': { opacity: '0', transform: 'translateY(10px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              glitch: {
+                '0%': { transform: 'translate(0)' },
+                '20%': { transform: 'translate(-2px, 2px)' },
+                '40%': { transform: 'translate(-2px, -2px)' },
+                '60%': { transform: 'translate(2px, 2px)' },
+                '80%': { transform: 'translate(2px, -2px)' },
+                '100%': { transform: 'translate(0)' },
               }
             }
           },
@@ -46,21 +57,21 @@
     </script>
     <style>
       body {
-        background-color: #050505;
+        background-color: #030303;
         color: #CD7F32;
         -webkit-font-smoothing: antialiased;
         overflow-x: hidden;
       }
-      /* Custom Scrollbar for Chrome/Safari/Webkit */
+      /* Custom Scrollbar for Chrome/Safari/Webkit - Squared off */
       ::-webkit-scrollbar {
-        width: 6px;
+        width: 4px; /* Thinner */
       }
       ::-webkit-scrollbar-track {
-        background: #050505;
+        background: #030303;
       }
       ::-webkit-scrollbar-thumb {
-        background: #2E2E2E;
-        border-radius: 0px;
+        background: #1f1f1f;
+        border-radius: 0px; /* Sharp corners */
       }
       ::-webkit-scrollbar-thumb:hover {
         background: #CD7F32;

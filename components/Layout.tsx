@@ -14,17 +14,17 @@ const Layout: React.FC<LayoutProps> = ({ children, currentView, setView }) => {
       <Navigation currentView={currentView} setView={setView} />
       
       <main className="relative z-0">
-        {/* Background decorative elements */}
+        {/* Background - Ambient Precision Only. Minimal visual noise. */}
         <div className="fixed top-0 left-0 w-full h-screen pointer-events-none z-[-1] overflow-hidden">
-           <div className="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-bronze/5 rounded-full blur-[120px]" />
-           <div className="absolute bottom-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-stone/20 rounded-full blur-[100px]" />
+           {/* Extremely subtle ambient light, almost imperceptible */}
+           <div className="absolute top-[-20%] right-[-10%] w-[60vw] h-[60vw] bg-bronze/5 rounded-full blur-[150px] opacity-10" />
         </div>
         
         {children}
       </main>
 
-      <footer className="border-t border-stone py-8 text-center">
-        <p className="font-mono text-[10px] text-stone uppercase tracking-widest">
+      <footer className="border-t border-stone/50 py-12 text-center bg-void mt-20">
+        <p className="font-mono text-[10px] text-stone uppercase tracking-[0.2em]">
           RyanrealAF © 2024 // Authenticity Ain't Optional // System Online
         </p>
       </footer>

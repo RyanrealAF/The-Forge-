@@ -11,12 +11,9 @@ const OracleChat: React.FC = () => {
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Initialize chat session on mount
     try {
       const session = createBrandChat();
       setChatSession(session);
-      
-      // Initial greeting from the persona
       setMessages([
         {
           id: 'init',
@@ -56,17 +53,14 @@ const OracleChat: React.FC = () => {
 
     try {
       const responseText = await sendMessageToOracle(chatSession, userMsg.text);
-      
       const modelMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'model',
         text: responseText,
         timestamp: new Date()
       };
-      
       setMessages(prev => [...prev, modelMsg]);
     } catch (error) {
-      console.error(error);
       const errorMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'model',
@@ -88,16 +82,28 @@ const OracleChat: React.FC = () => {
 
   return (
     <div className="h-screen pt-24 pb-6 px-4 md:px-0 max-w-4xl mx-auto flex flex-col">
-      <div className="flex-none mb-6 border-b border-stone pb-4">
-        <h2 className="font-display text-3xl text-bronze tracking-tight uppercase">
-          The Oracle
-        </h2>
-        <p className="text-xs font-mono text-stone mt-1">
-          SECURE CHANNEL // ENCRYPTED // NO FILTER
-        </p>
+      {/* Header - Terminal Style */}
+      <div className="flex-none mb-8 border-b border-stone pb-2 flex justify-between items-end">
+        <div>
+            <h2 className="font-display text-4xl text-white tracking-tighter uppercase">
+            The Oracle
+            </h2>
+            <div className="flex gap-2 mt-1">
+                <span className="w-2 h-2 bg-green-900 animate-pulse"></span>
+                <p className="text-[10px] font-mono text-bronze uppercase tracking-[0.2em]">
+                System Online
+                </p>
+            </div>
+        </div>
+        <div className="text-right hidden md:block">
+            <p className="text-[10px] font-mono text-stone uppercase tracking-widest">
+                Secure Channel // Encrypted
+            </p>
+        </div>
       </div>
 
-      <div className="flex-grow overflow-y-auto space-y-6 pr-2 custom-scrollbar">
+      {/* Chat Stream */}
+      <div className="flex-grow overflow-y-auto space-y-6 pr-4 custom-scrollbar">
         {messages.map((msg) => (
           <div 
             key={msg.id} 
@@ -105,53 +111,61 @@ const OracleChat: React.FC = () => {
           >
             <div 
               className={`
-                max-w-[85%] p-6 relative border
+                max-w-[90%] md:max-w-[80%] p-6 border relative
                 ${msg.role === 'user' 
-                  ? 'bg-stone/20 border-stone text-mist' 
-                  : 'bg-void-light border-bronze/30 text-bronze shadow-[0_0_15px_rgba(205,127,50,0.1)]'
+                  ? 'bg-stone/10 border-stone text-mist' 
+                  : 'bg-void border-bronze/40 text-bronze'
                 }
               `}
             >
-              {msg.role === 'model' && (
-                 <div className="absolute -top-3 -left-3 w-6 h-6 bg-void border border-bronze flex items-center justify-center">
-                   <div className="w-2 h-2 bg-bronze rounded-full animate-pulse" />
-                 </div>
-              )}
+              {/* Tactical Corner */}
+              <div className={`absolute top-0 w-2 h-2 border-t border-l ${msg.role === 'user' ? 'left-0 border-stone' : 'left-0 border-bronze'}`}></div>
+              <div className={`absolute bottom-0 w-2 h-2 border-b border-r ${msg.role === 'user' ? 'right-0 border-stone' : 'right-0 border-bronze'}`}></div>
+
+              <div className="flex justify-between items-center mb-4 border-b border-dashed border-white/5 pb-2">
+                <span className="text-[9px] font-mono uppercase tracking-widest text-stone">
+                    {msg.role === 'user' ? 'OPERATOR' : 'ORACLE_AI'}
+                </span>
+                <span className="text-[9px] font-mono text-stone/50">
+                    {msg.timestamp.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'})}
+                </span>
+              </div>
               
               <p className="font-sans text-sm md:text-base whitespace-pre-wrap leading-relaxed">
                 {msg.text}
               </p>
-              <span className="text-[10px] uppercase tracking-widest opacity-40 mt-4 block font-display">
-                {msg.role === 'user' ? 'YOU' : 'RYANREALAF'} // {msg.timestamp.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
-              </span>
             </div>
           </div>
         ))}
         {isLoading && (
           <div className="flex justify-start">
-             <div className="bg-void border border-stone p-4 text-bronze font-mono text-xs animate-pulse">
-               GENERATING_TRUTH_SEQUENCE...
+             <div className="bg-void border border-stone/50 px-4 py-2 text-bronze font-mono text-[10px] uppercase tracking-widest animate-pulse">
+               > Processing_Truth...
              </div>
           </div>
         )}
         <div ref={bottomRef} />
       </div>
 
-      <div className="flex-none mt-6">
-        <div className="relative flex items-end gap-2 border border-stone bg-void-light p-2 focus-within:border-bronze transition-colors">
+      {/* Input Area - Command Line */}
+      <div className="flex-none mt-8">
+        <div className="relative flex items-stretch border border-stone bg-void focus-within:border-bronze transition-colors duration-0">
+          <div className="flex items-center pl-4 pr-2 bg-stone/10 border-r border-stone/30">
+             <span className="text-bronze font-mono text-sm">></span>
+          </div>
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyPress}
-            placeholder="Type your truth..."
-            className="w-full bg-transparent text-white font-sans text-sm p-3 focus:outline-none resize-none h-14 custom-scrollbar placeholder-stone"
+            placeholder="INPUT DIRECTIVE..."
+            className="w-full bg-transparent text-white font-mono text-sm p-4 focus:outline-none resize-none h-16 custom-scrollbar placeholder-stone/50"
           />
           <button
             onClick={handleSend}
             disabled={isLoading || !input.trim()}
-            className="h-14 px-6 bg-stone hover:bg-bronze text-white font-display uppercase tracking-widest text-sm transition-colors disabled:opacity-50 disabled:hover:bg-stone"
+            className="px-8 bg-stone/20 hover:bg-bronze hover:text-black text-bronze font-mono uppercase tracking-[0.2em] text-xs transition-colors disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-bronze border-l border-stone/30"
           >
-            Send
+            EXEC
           </button>
         </div>
       </div>

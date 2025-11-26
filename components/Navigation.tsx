@@ -16,40 +16,43 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, setView }) => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-void/90 backdrop-blur-md border-b border-stone/50">
-      <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+    // Tactical Minimalism: Solid opaque background, no blur. 
+    // "Command Center" feel.
+    <nav className="fixed top-0 left-0 w-full z-50 bg-void border-b border-white/5">
+      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <div 
-          className="flex items-center gap-3 cursor-pointer group hover:opacity-80 transition-opacity" 
+          className="flex items-center gap-3 cursor-pointer group hover:opacity-100 opacity-90 transition-opacity" 
           onClick={() => setView(ViewState.MANIFESTO)}
         >
-          <BrandLogo className="h-16 w-auto text-bronze drop-shadow-[0_0_8px_rgba(205,127,50,0.2)]" />
+          <BrandLogo className="h-12 w-auto text-bronze drop-shadow-none" />
         </div>
 
-        <div className="flex items-center gap-8 hidden md:flex">
+        <div className="flex items-center gap-12 hidden md:flex">
           {navItems.map((item) => (
             <button
               key={item.value}
               onClick={() => setView(item.value)}
               className={`
-                text-sm font-display tracking-widest transition-all duration-300 relative
-                ${currentView === item.value ? 'text-bronze' : 'text-mist hover:text-white'}
+                text-xs font-mono font-bold tracking-[0.15em] transition-colors duration-100 relative py-2
+                ${currentView === item.value ? 'text-bronze' : 'text-stone hover:text-white'}
               `}
             >
-              {item.label}
+              {/* Tactical Indicator */}
               {currentView === item.value && (
-                <span className="absolute -bottom-2 left-0 w-full h-[1px] bg-bronze animate-pulse-slow" />
+                <span className="absolute top-1/2 -left-3 w-1 h-1 bg-bronze transform -translate-y-1/2" />
               )}
+              {item.label}
             </button>
           ))}
         </div>
 
-        {/* Mobile menu icon placeholder - simplistic for tactical feel */}
+        {/* Mobile menu - simplified */}
         <div className="md:hidden flex gap-4">
            {navItems.map((item) => (
              <button
                key={item.value}
                onClick={() => setView(item.value)}
-               className={`text-[10px] font-bold tracking-widest ${currentView === item.value ? 'text-bronze' : 'text-stone'}`}
+               className={`text-[10px] font-mono font-bold tracking-widest uppercase ${currentView === item.value ? 'text-bronze' : 'text-stone'}`}
              >
                {item.label.slice(0, 3)}
              </button>
