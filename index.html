@@ -1,96 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RyanrealAF // COMMAND CENTER</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Add Babel Standalone for in-browser TSX/JSX transpilation -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RyanrealAF | Authenticity Ain’t Optional</title>
+
+    <!-- React + ReactDOM (CDN) -->
+    <script crossorigin src="https://unpkg.com/react@19/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@19/umd/react-dom.production.min.js"></script>
+
+    <!-- Babel Standalone (runtime transpiler) -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Tailwind CSS (runtime config) -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              'void': '#030303',     // Matte Black - The Abyss (Darkened)
-              'void-light': '#0a0a0a', // Barely lighter black for cards
-              'bronze': '#CD7F32',   // Metallic Bronze - The Scar
-              'bronze-dim': '#8c5e3c',
-              'stone': '#1f1f1f',    // Textured Stone - Reality (Darker/Colder)
-              'oak': '#6d4c41',      // Warm Oak - Nature/Stability
-              'mist': '#525252',     // Subdued Text (Darker for contrast control)
-              'highlight': '#e5e5e5', // Sharp text
-            },
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-              display: ['Oswald', 'sans-serif'], // Monument Extended proxy
-              mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', "Liberation Mono", "Courier New", 'monospace'], // Tactical Data
-            },
-            backgroundImage: {
-              'noise': "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjMDMwMzAzIi8+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiMwYTBhMGEiLz4KPC9zdmc+')", // Darkened noise
-            },
-            animation: {
-              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-              'fade-in': 'fadeIn 0.8s ease-out forwards',
-              'glitch': 'glitch 0.2s cubic-bezier(0.4, 0, 0.6, 1) both',
-            },
-            keyframes: {
-              fadeIn: {
-                '0%': { opacity: '0', transform: 'translateY(10px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              },
-              glitch: {
-                '0%': { transform: 'translate(0)' },
-                '20%': { transform: 'translate(-2px, 2px)' },
-                '40%': { transform: 'translate(-2px, -2px)' },
-                '60%': { transform: 'translate(2px, 2px)' },
-                '80%': { transform: 'translate(2px, -2px)' },
-                '100%': { transform: 'translate(0)' },
-              }
+              void: '#0a0a0a',
+              bronze: '#b87333',
+              stone: '#7d7d7d',
+              oak: '#a0522d'
             }
-          },
-        },
+          }
+        }
       }
     </script>
+
     <style>
       body {
-        background-color: #030303;
-        color: #CD7F32;
-        -webkit-font-smoothing: antialiased;
-        overflow-x: hidden;
-      }
-      /* Custom Scrollbar for Chrome/Safari/Webkit - Squared off */
-      ::-webkit-scrollbar {
-        width: 4px; /* Thinner */
-      }
-      ::-webkit-scrollbar-track {
-        background: #030303;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #1f1f1f;
-        border-radius: 0px; /* Sharp corners */
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #CD7F32;
+        background-color: #0a0a0a;
+        color: #e6e6e6;
+        font-family: 'Monument Extended', system-ui, sans-serif;
+        margin: 0;
+        padding: 0;
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0"
-  }
-}
-</script>
-</head>
+  </head>
   <body>
+    <!-- React root -->
     <div id="root"></div>
-    <!-- Change script type to text/babel for Babel to transpile it -->
-    <script type="text/babel" data-type="module" src="./index.tsx"></script>
+
+    <!-- Your TSX entry file -->
+    <script type="text/babel" data-presets="typescript,react" src="./main.tsx"></script>
   </body>
 </html>
